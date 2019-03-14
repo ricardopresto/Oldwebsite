@@ -6,7 +6,6 @@
 }
 
 .thumb {
-  height: 200px;
   margin: 20px;
   padding: 20px;
   border: 1px solid gray;
@@ -40,20 +39,19 @@
   background-color: white;
 }
 
-#left,
-#right {
+.cheeks {
   display: flex;
-  height: 566px;
-  width: 120px;
+  width: 80px;
   align-items: center;
   justify-content: center;
   opacity: 0;
 }
 
-#left:hover {
-  opacity: 0.4;
+#picContainer {
+  display: flex;
+  flex-direction: row;
 }
 
-#right:hover {
+.cheeks:hover {
   opacity: 0.4;
 }

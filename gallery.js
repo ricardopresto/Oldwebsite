@@ -9,6 +9,7 @@ wrapper.addEventListener("click", expand);
 modal.addEventListener("click", hide);
 left.addEventListener("click", leftClick);
 right.addEventListener("click", rightClick);
+document.addEventListener("keydown", keyPress);
 
 let currentImage = "";
 thumbs = Array.from(thumbs);
@@ -17,6 +18,8 @@ let fullPicDisplay = false;
 for (i = 0; i < thumbs.length; i++) {
   if (thumbs[i].clientHeight > thumbs[i].clientWidth) {
     thumbs[i].style.height = "300px";
+  } else {
+    thumbs[i].style.width = "300px";
   }
 }
 
@@ -29,7 +32,7 @@ function expand(event) {
     let image = clicked.getAttribute("src");
     let pic = document.createElement("img");
     pic.setAttribute("src", image);
-    pic.setAttribute("height", "500");
+    picSize(pic);
     fullpic.appendChild(pic);
     modal.style.display = "flex";
   }
@@ -38,38 +41,33 @@ function expand(event) {
 function leftClick() {
   if (currentImage > 0) {
     currentImage = currentImage - 1;
-    fullpic.removeChild(fullpic.firstChild);
-    let image = thumbs[Number(currentImage)];
-    image = image.getAttribute("src");
+    let image = thumbs[Number(currentImage)].getAttribute("src");
     let pic = document.createElement("img");
     pic.setAttribute("src", image);
-    pic.setAttribute("height", "500");
-    fullpic.appendChild(pic);
+    picSize(pic);
+    fullpic.replaceChild(pic, fullpic.firstChild);
   }
 }
 
 function rightClick() {
   if (currentImage < thumbs.length - 1) {
     currentImage = currentImage + 1;
-    fullpic.removeChild(fullpic.firstChild);
     let image = thumbs[Number(currentImage)].getAttribute("src");
     let pic = document.createElement("img");
     pic.setAttribute("src", image);
-    pic.setAttribute("height", "500");
-    fullpic.appendChild(pic);
+    picSize(pic);
+    fullpic.replaceChild(pic, fullpic.firstChild);
   }
 }
 
 function hide(event) {
   let clicked = event.srcElement;
-  if (clicked == modal) {
+  if (clicked == modal || clicked == fullpic || clicked == fullpic.firstChild) {
     fullpic.removeChild(fullpic.firstChild);
     fullPicDisplay = false;
     modal.style.display = "none";
   }
 }
-
-document.addEventListener("keydown", keyPress);
 
 function keyPress(event) {
   if (fullPicDisplay == true) {
@@ -84,5 +82,25 @@ function keyPress(event) {
       fullPicDisplay = false;
       modal.style.display = "none";
     }
+  }
+}
+
+function picSize(pic) {
+  if (screenOrientation() == "landscape") {
+    pic.setAttribute("height", document.documentElement.clientHeight - 160);
+  } else {
+    pic.setAttribute("width", document.documentElement.clientWidth - 220);
+  }
+  left.setAttribute("height", pic.height + 60);
+  right.setAttribute("height", pic.height + 60);
+}
+
+function screenOrientation() {
+  if (
+    document.documentElement.clientHeight > document.documentElement.clientWidth
+  ) {
+    return "portrait";
+  } else {
+    return "landscape";
   }
 }
