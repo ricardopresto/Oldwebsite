@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+}
+
+/* div {
+  border: 1px solid red;
+} */
+
+#container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#guide {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  background-color: #000;
+  opacity: 0.8;
+  color: #fff;
+  text-align: center;
+}
+
+#guide i {
+  font-size: 3em;
+  text-align: right;
+  cursor: pointer;
+}
+
+#header {
+  text-align: right;
+  margin: 0.5em 3em 0;
+}
+
+#guide p {
+  font-size: 1.5em;
+  margin: 1em 1em 0 0;
+}
+
+#canvasContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#controls {
+  display: flex;
+  flex-flow: column;
+  width: 230px;
+  min-width: 230px;
+  justify-content: space-evenly;
+  margin: 1em;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 130px;
+}
+
+#smallButtons {
+  display: flex;
+  flex-flow: row wrap;
+  width: 80%;
+  justify-content: space-between;
+}
+
+button {
+  display: block;
+  height: 4em;
+  padding: 0.5em;
+  width: 48%;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 4px;
+  font-size: 1em;
+  -webkit-transition: 0.2s;
+  transition: box-shadow 0.2s;
+}
+
+#helpBtn {
+  margin: 0.5em;
+  height: 2.5em;
+  width: 80%;
+}
+
+input {
+  transition: box-shadow 0.2s;
+}
+
+button:hover {
+  box-shadow: 2px 2px 4px -1px gray;
+}
+
+input:hover {
+  box-shadow: 2px 2px 4px -1px gray;
+}
+
+#renderBtn {
+  width: 80%;
+  padding: 0.5em;
+  margin: 0.5em;
+  font-size: 1.5em;
+}
+
+#sliders {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  min-width: 230px;
+}
+
+.sliderBlock {
+  margin: 0.5em;
+}
+
+#overlay {
+  border: 1px solid black;
+  z-index: 1;
+}
+
+canvas {
+  position: absolute;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 16px;
+  margin-bottom: 10px;
+  background: #fff;
+  outline: none;
+  border: 1px solid #000;
+  border-radius: 6px;
+  -webkit-transition: 0.2s;
+  transition: box-shadow 0.2s;
+}
+
+.slider:hover {
+  box-shadow: 2px 2px 4px -1px gray;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 12px;
+  border-radius: 5px;
+  background: #292a2b;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 10px;
+  background: #292a2b;
+  cursor: pointer;
+}
