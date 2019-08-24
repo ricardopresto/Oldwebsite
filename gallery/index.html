@@ -7,14 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="gallery.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
   </head>
   <body>
-    <a href="../index.html">Home</a>
     <div id="modal">
-      <div id="picContainer">
-      <div id="left" class="cheeks"><i class="fas fa-angle-left fa-4x"></i></i></div>
-      <div id="fullpic"></div>
-      <div id="right" class="cheeks"><i class="fas fa-angle-right fa-4x"></i></div>
+      <div id="picAndCaption">
+        <div id="picContainer">
+          <div id="left" class="cheeks"><i class="fas fa-angle-left fa-4x"></i></i></div>
+          <div id="fullpic"></div>
+          <div id="right" class="cheeks"><i class="fas fa-angle-right fa-4x"></i></div>
+        </div>
+        <div id="caption"></div>
       </div>
     </div>
     <div id="wrapper">
@@ -30,6 +34,6 @@
       <img class="thumb" id="thumb9" src="images/canterbury2.jpg">
     </div>
     
-    <script src="gallery.js" async defer></script>
+    <script src="gallery.js" type="module" async defer></script>
   </body>
 </html>

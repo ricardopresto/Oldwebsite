@@ -1,9 +1,12 @@
-let fullpic = document.getElementById("fullpic");
-let modal = document.getElementById("modal");
-let wrapper = document.getElementById("wrapper");
+import captions from "./captions.js";
+
+const fullpic = document.getElementById("fullpic");
+const modal = document.getElementById("modal");
+const wrapper = document.getElementById("wrapper");
 let thumbs = document.getElementsByClassName("thumb");
-let left = document.getElementById("left");
-let right = document.getElementById("right");
+const left = document.getElementById("left");
+const right = document.getElementById("right");
+const caption = document.getElementById("caption");
 
 wrapper.addEventListener("click", expand);
 modal.addEventListener("click", hide);
@@ -15,17 +18,17 @@ let currentImage = "";
 thumbs = Array.from(thumbs);
 let fullPicDisplay = false;
 
-for (i = 0; i < thumbs.length; i++) {
-  if (thumbs[i].clientHeight > thumbs[i].clientWidth) {
-    thumbs[i].style.height = "300px";
+thumbs.forEach(thumb => {
+  if (thumb.clientHeight > thumb.clientWidth) {
+    thumb.style.height = "300px";
   } else {
-    thumbs[i].style.width = "300px";
+    thumb.style.width = "300px";
   }
-}
+});
 
 function expand(event) {
   let clicked = event.srcElement;
-  if (clicked !== wrapper) {
+  if (clicked !== wrapper && document.documentElement.clientWidth > 500) {
     fullPicDisplay = true;
     currentImage = String(clicked.id).slice(-1);
     currentImage = Number(currentImage);
@@ -35,29 +38,45 @@ function expand(event) {
     picSize(pic);
     fullpic.appendChild(pic);
     modal.style.display = "flex";
+    caption.textContent = captions[currentImage];
+    if (currentImage != 0) {
+      left.style.visibility = "visible";
+    }
+    if (currentImage != thumbs.length - 1) {
+      right.style.visibility = "visible";
+    }
   }
 }
 
 function leftClick() {
+  right.style.visibility = "visible";
   if (currentImage > 0) {
     currentImage = currentImage - 1;
-    let image = thumbs[Number(currentImage)].getAttribute("src");
-    let pic = document.createElement("img");
-    pic.setAttribute("src", image);
-    picSize(pic);
-    fullpic.replaceChild(pic, fullpic.firstChild);
+    changePic(currentImage);
+    if (currentImage == 0) {
+      left.style.visibility = "hidden";
+    }
   }
 }
 
 function rightClick() {
+  left.style.visibility = "visible";
   if (currentImage < thumbs.length - 1) {
     currentImage = currentImage + 1;
-    let image = thumbs[Number(currentImage)].getAttribute("src");
-    let pic = document.createElement("img");
-    pic.setAttribute("src", image);
-    picSize(pic);
-    fullpic.replaceChild(pic, fullpic.firstChild);
+    changePic(currentImage);
+    if (currentImage == thumbs.length - 1) {
+      right.style.visibility = "hidden";
+    }
   }
+}
+
+function changePic(currentImage) {
+  let image = thumbs[Number(currentImage)].getAttribute("src");
+  let pic = document.createElement("img");
+  pic.setAttribute("src", image);
+  picSize(pic);
+  fullpic.replaceChild(pic, fullpic.firstChild);
+  caption.textContent = captions[currentImage];
 }
 
 function hide(event) {
@@ -66,6 +85,8 @@ function hide(event) {
     fullpic.removeChild(fullpic.firstChild);
     fullPicDisplay = false;
     modal.style.display = "none";
+    left.style.visibility = "hidden";
+    right.style.visibility = "hidden";
   }
 }
 
@@ -81,6 +102,8 @@ function keyPress(event) {
       fullpic.removeChild(fullpic.firstChild);
       fullPicDisplay = false;
       modal.style.display = "none";
+      left.style.visibility = "hidden";
+      right.style.visibility = "hidden";
     }
   }
 }

@@ -9,13 +9,14 @@
   margin: 20px;
   padding: 20px;
   border: 1px solid gray;
+  transition: all;
+  transition-duration: 80ms;
 }
 
 .thumb:hover {
   position: relative;
-  top: -1px;
-  left: -1px;
-  box-shadow: 2px 2px 4px rgb(49, 49, 49);
+  transform: scale(1.008, 1.008);
+  box-shadow: 1px 1px 10px grey;
 }
 
 #modal {
@@ -32,11 +33,24 @@
   justify-content: center;
 }
 
+#picAndCaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
 #fullpic {
   display: block;
   padding: 30px;
   border: 1px solid gray;
   background-color: white;
+}
+
+#caption {
+  color: black;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-top: 10px;
 }
 
 .cheeks {
@@ -45,6 +59,7 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
+  visibility: hidden;
 }
 
 #picContainer {
